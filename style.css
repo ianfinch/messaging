@@ -1,0 +1,40 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    background: steelblue;
+    font-family: danielbd;
+    padding: 0.25em 0 0.5em 0.25em;
+    color: white;
+}
+
+h2 {
+    font-family: danielbd;
+    padding: 0.2em 0;
+}
+
+#author {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font: courier;
+    font-size: 12px;
+    padding: 0.2em 0.5em;
+    color: lightgrey;
+}
+
+#editor {
+    position: absolute;
+    right: 0;
+    background: lightgoldenrodyellow;
+    padding: 0.2em 0.5em;
+    border: 1px solid orange;
+}
+
+#source {
+    border: none;
+    background: lightgoldenrodyellow;
+    outline: 0px transparent;
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Messaging Diagram</title>
+
+        <script src="bower_components/bower-webfontloader/webfont.js"></script>
+        <script src="bower_components/snap.svg/dist/snap.svg-min.js"></script>
+        <script src="bower_components/underscore/underscore-min.js"></script>
+        <script src="bower_components/js-sequence-diagrams/dist/sequence-diagram-min.js"></script>
+        <link href="bower_components/js-sequence-diagrams/dist/sequence-diagram-min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
+    </head>
+    <body>
+        <div id="author">github.com/bramp/js-sequence-diagrams</div>
+        <h1>Messaging Diagram Editor</h1>
+        <div id="editor">
+            <h2>Source</h2>
+            <textarea id="source" rows="20" cols="40">
+browser -> server: request
+server -> server: process
+participant database
+note right of database: add DB calls
+server --> browser: response 
+</textarea>
+        </div>
+        <div id="diagram"></div>
+        <script>
+            document.getElementById("source").addEventListener("input", updateDiagram);
+            updateDiagram();
+
+            function updateDiagram() {
+                var diagram = document.getElementById("diagram");
+                var options = {theme: 'hand'};
+                var src = document.getElementById("source").value;
+
+                try {
+                    var d = Diagram.parse(src);
+                    if (diagram.children) {
+                        [...diagram.children].forEach(child => diagram.removeChild(child));
+                    }
+                    d.drawSVG('diagram', options);
+                } catch (e) {
+                    if (e.name !== "ParseError") {
+                        console.error(e);
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
