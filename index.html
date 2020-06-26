@@ -13,43 +13,24 @@
         <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
     </head>
     <body>
-        <div id="author">
-        <div>github.com/ianfinch/messaging</div>
-        <div>github.com/bramp/js-sequence-diagrams</div>
-        </div>
         <h1>Messaging Diagram Editor</h1>
         <div id="editor">
             <h2>Source</h2>
-            <textarea id="source" rows="20" cols="40">
+            <textarea id="source" rows="20" cols="50">
 browser -> server: request
 server -> server: process
 participant database
-note right of database: add DB calls
+note over server,database: add DB calls
 server --> browser: response 
+note left of browser: display to user
 </textarea>
         </div>
         <div id="diagram"></div>
-        <script>
-            document.getElementById("source").addEventListener("input", updateDiagram);
-            updateDiagram();
-
-            function updateDiagram() {
-                var diagram = document.getElementById("diagram");
-                var options = {theme: 'hand'};
-                var src = document.getElementById("source").value;
-
-                try {
-                    var d = Diagram.parse(src);
-                    if (diagram.children) {
-                        [...diagram.children].forEach(child => diagram.removeChild(child));
-                    }
-                    d.drawSVG('diagram', options);
-                } catch (e) {
-                    if (e.name !== "ParseError") {
-                        console.error(e);
-                    }
-                }
-            }
-        </script>
+        <footer>
+            Code is on github at <a href="https://github.com/ianfinch/messaging">ianfinch/messaging</a>,
+            wrapping <a href="https://github.com/bramp/js-sequence-diagrams">bramp/js-sequence-diagrams</a>.
+            See <a href="https://ian-says.com">ian-says.com</a> for more information.
+        </footer>
+        <script src="manage-input.js"></script>
     </body>
 </html>

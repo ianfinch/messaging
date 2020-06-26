@@ -7,6 +7,8 @@ mkdir public
 
 cp index.html public/
 cp style.css public/
+cp manage-input.js public/
+cp favicon.ico public/
 
 cp bower_components/bower-webfontloader/webfont.js public/
 cp bower_components/snap.svg/dist/snap.svg-min.js public/

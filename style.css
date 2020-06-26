@@ -15,14 +15,28 @@ h2 {
     padding: 0.2em 0;
 }
 
-#author {
-    position: absolute;
-    top: 0;
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
     right: 0;
-    font: courier;
+    font-family: sans-serif;
     font-size: 12px;
     padding: 0.2em 0.5em;
+    background: steelblue;
+    color: white;
+    box-sizing: border-box;
+    text-align: right;
+}
+
+footer a {
     color: lightgrey;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: lightgoldenrodyellow;
+    text-decoration: underline;
 }
 
 #editor {
@@ -37,4 +51,8 @@ h2 {
     border: none;
     background: lightgoldenrodyellow;
     outline: 0px transparent;
+}
+
+.parse-error {
+    color: red;
 }
