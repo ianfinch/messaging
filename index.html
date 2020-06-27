@@ -9,11 +9,30 @@
         <script src="snap.svg-min.js"></script>
         <script src="underscore-min.js"></script>
         <script src="sequence-diagram-min.js"></script>
+        <script src="font-data.js"></script>
         <link href="sequence-diagram-min.css" rel="stylesheet" />
         <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
     </head>
     <body>
+        <div id="help" class="hidden">
+            <h2>About</h2>
+            <p>
+The code for this app is on github at <a href="https://github.com/ianfinch/messaging">ianfinch/messaging</a>.
+All the clever stuff was already available at <a href="https://github.com/bramp/js-sequence-diagrams">bramp/js-sequence-diagrams</a>.
+            </p>
+            <p>
+See <a href="https://ian-says.com/articles/netlify-github-website/">ian-says.com</a> for more information about how this was all put together, built, and hosted.
+            </p>
+            <p>
+Licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache License, Version 2.0</a>.
+            </p>
+            <button id="close-help">Close</button>
+        </div>
         <h1>Messaging Diagram Editor</h1>
+        <div id="buttons">
+            <button id="about">About</button>
+            <button id="download">Download</button>
+        </div>
         <div id="editor">
             <h2>Source</h2>
             <textarea id="source" rows="20" cols="50">
@@ -26,11 +45,6 @@ note left of browser: display to user
 </textarea>
         </div>
         <div id="diagram"></div>
-        <footer>
-            Code is on github at <a href="https://github.com/ianfinch/messaging">ianfinch/messaging</a>,
-            wrapping <a href="https://github.com/bramp/js-sequence-diagrams">bramp/js-sequence-diagrams</a>.
-            See <a href="https://ian-says.com">ian-says.com</a> for more information.
-        </footer>
         <script src="manage-input.js"></script>
     </body>
 </html>

@@ -18,3 +18,6 @@ cp bower_components/js-sequence-diagrams/dist/sequence-diagram-min.css public/
 
 cp js-sequence-diagrams/fonts/daniel/danielbd.woff public/
 cp js-sequence-diagrams/fonts/daniel/danielbd.woff2 public/
+
+fontData=$( base64 public/danielbd.woff | sed -r -e 's/[[:space:]]+//g' )
+echo "const fontData = 'data:application/font-woff;charset=utf-8;base64,$( echo -n $fontData )';" > public/font-data.js
