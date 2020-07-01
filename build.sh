@@ -3,7 +3,9 @@
 git clone https://github.com/bramp/js-sequence-diagrams.git
 bower install js-sequence-diagrams
 
-mkdir public
+if [[ ! -e public ]] ; then
+    mkdir public
+fi
 
 cp index.html public/
 cp style.css public/

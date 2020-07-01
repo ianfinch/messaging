@@ -13,7 +13,7 @@
         <link href="sequence-diagram-min.css" rel="stylesheet" />
         <link rel="stylesheet" href="style.css" type="text/css" media="screen" />
     </head>
-    <body>
+    <body class="hand-drawn">
         <div id="help" class="hidden">
             <h2>About</h2>
             <p>
@@ -31,6 +31,8 @@ Licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache Licen
         <h1>Messaging Diagram Editor</h1>
         <div id="buttons">
             <button id="about">About</button>
+            <button id="drawn" class="hidden">Drawn</button>
+            <button id="straight">Formal</button>
             <button id="download">Download</button>
         </div>
         <div id="editor">
@@ -41,7 +43,7 @@ server -> server: process
 participant database
 note over server,database: add DB calls
 server --> browser: response 
-note left of browser: display to user
+note left of browser: display\nto user
 </textarea>
         </div>
         <div id="diagram"></div>
