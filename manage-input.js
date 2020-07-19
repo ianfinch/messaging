@@ -4,6 +4,7 @@ document.getElementById("about").addEventListener("click", showHelp);
 document.getElementById("drawn").addEventListener("click", switchThemeToDrawn);
 document.getElementById("straight").addEventListener("click", switchThemeToSimple);
 document.getElementById("close-help").addEventListener("click", closeHelp);
+setupFileDrop();
 
 var options = { theme: "hand", "font-size": 14 };
 updateDiagram();
@@ -92,4 +93,32 @@ function switchThemeToDrawn() {
         document.getElementById("straight").classList.remove("hidden");
     }
     document.getElementsByTagName("body")[0].classList.add("hand-drawn");
+}
+
+function dropHandler(evt) {
+    evt.preventDefault();
+    const file = evt.dataTransfer.items[0].getAsFile();
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const contents = e.target.result;
+        const script = contents
+                        .replace(/^.*<desc>/, "")
+                        .split(/<\/desc>.*/)[0]
+                        .replace(/&gt;/g, ">");
+        document.getElementById("source").value = script;
+        updateDiagram();
+    };
+    reader.readAsText(file);
+}
+
+function dragoverHandler(evt) {
+    evt.preventDefault();
+    evt.dataTransfer.dropEffect = "copy";
+}
+
+function setupFileDrop() {
+    const dropZone = document.getElementById("editor");
+    dropZone.addEventListener("drop", dropHandler, false);
+    dropZone.addEventListener("dragenter", dragoverHandler, false);
+    dropZone.addEventListener("dragover", dragoverHandler, false);
 }
