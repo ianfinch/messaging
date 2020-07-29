@@ -6,7 +6,7 @@ document.getElementById("straight").addEventListener("click", switchThemeToSimpl
 document.getElementById("close-help").addEventListener("click", closeHelp);
 setupFileDrop();
 
-var options = { theme: "hand", "font-size": 14 };
+var options = { theme: "hand", "font-size": 14, "stroke-width": 1 };
 updateDiagram();
 
 function updateDiagram() {
@@ -37,20 +37,36 @@ function serialise(content, mimeType) {
     return "data:" + mimeType + ";base64,\n" + serialised;
 }
 
+const colourImageStyle = [
+    "@font-face { font-family: danielbd; src: url('" + fontData + "'); }",
+    "svg .actor path, svg .actor rect { fill: antiquewhite; }",
+    "svg .signal path, svg .signal line { stroke: mediumblue; }",
+    "svg .signal text { fill: mediumblue; }",
+    "svg #markerArrowBlock { fill: mediumblue; }",
+    "svg .note path, svg .note rect { stroke: darkgoldenrod; fill: #ffffa5; }"
+].join("\n");
+
+const monochromeImageStyle = [
+    "svg .actor path, svg .actor rect { fill: none; stroke-width: 1; }",
+    "svg .actor + line { stroke-width: 1; stroke-dasharray: 4; }",
+    "svg .signal path, svg .signal line { stroke: black; stroke-width: 1; }",
+    "svg .signal text { fill: black; }",
+    "svg #markerArrowBlock { fill: black; }",
+    "svg .note path, svg .note rect { stroke: red; fill: white; }",
+    "svg .note text { fill: red; }"
+].join("\n");
+
 function downloadSvg() {
 
     let svg = [...document.getElementById("diagram").children].filter(x => x.tagName === "svg")[0];
     svg.setAttribute("version", "1.1");
     svg.setAttribute("xmlns", "http://www.w3.org/2000/svg");
     let embeddedStyle = document.createElement("style");
-    embeddedStyle.textContent = [
-        "@font-face { font-family: danielbd; src: url('" + fontData + "'); }",
-        "svg .actor path, svg .actor rect { fill: antiquewhite; }",
-        "svg .signal path, svg .signal line { stroke: mediumblue; }",
-        "svg .signal text { fill: mediumblue; }",
-        "svg #markerArrowBlock { fill: mediumblue; }",
-        "svg .note path, svg .note rect { stroke: darkgoldenrod; fill: #ffffa5; }"
-    ].join("\n");
+    if (options.theme === "hand") {
+        embeddedStyle.textContent = colourImageStyle;
+    } else {
+        embeddedStyle.textContent = monochromeImageStyle;
+    }
     svg.getElementsByTagName("defs")[0].appendChild(embeddedStyle);
     svg.getElementsByTagName("desc")[0].textContent = document.getElementById("source").value;
 
@@ -59,6 +75,8 @@ function downloadSvg() {
     link.href = serialise(svg.outerHTML, "image/svg+xml");
     document.body.appendChild(link);
     link.click();
+
+    updateDiagram();
 }
 
 function showHelp() {
@@ -74,7 +92,7 @@ function closeHelp() {
 }
 
 function switchThemeToSimple() {
-    options = { theme: "simple", "font-size": 12 };
+    options = { theme: "simple", "font-size": 12, "stroke-width": 1 };
     updateDiagram();
     document.getElementById("straight").classList.add("hidden");
     if (document.getElementById("drawn").classList.contains("hidden")) {
@@ -86,7 +104,7 @@ function switchThemeToSimple() {
 }
 
 function switchThemeToDrawn() {
-    options = { theme: "hand", "font-size": 14 };
+    options = { theme: "hand", "font-size": 14, "stroke-width": 1 };
     updateDiagram();
     document.getElementById("drawn").classList.add("hidden");
     if (document.getElementById("straight").classList.contains("hidden")) {
