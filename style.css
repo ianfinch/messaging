@@ -97,6 +97,7 @@ body.hand-drawn #editor {
     border: none;
     background: #dfd;
     outline: 0px transparent;
+    height: calc(100vh - 56px - 100px);
 }
 
 #editor.parse-error {

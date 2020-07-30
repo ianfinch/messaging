@@ -4,6 +4,8 @@ document.getElementById("about").addEventListener("click", showHelp);
 document.getElementById("drawn").addEventListener("click", switchThemeToDrawn);
 document.getElementById("straight").addEventListener("click", switchThemeToSimple);
 document.getElementById("close-help").addEventListener("click", closeHelp);
+document.getElementById("show-source").addEventListener("click", showSource);
+document.getElementById("hide-source").addEventListener("click", hideSource);
 setupFileDrop();
 
 var options = { theme: "hand", "font-size": 14, "stroke-width": 1 };
@@ -111,6 +113,40 @@ function switchThemeToDrawn() {
         document.getElementById("straight").classList.remove("hidden");
     }
     document.getElementsByTagName("body")[0].classList.add("hand-drawn");
+}
+
+function showSource() {
+    let editor = document.getElementById("editor");
+    if (editor.classList.contains("hidden")) {
+        editor.classList.remove("hidden");
+    }
+
+    let showButton = document.getElementById("show-source");
+    if (!showButton.classList.contains("hidden")) {
+        showButton.classList.add("hidden");
+    }
+
+    let hideButton = document.getElementById("hide-source");
+    if (hideButton.classList.contains("hidden")) {
+        hideButton.classList.remove("hidden");
+    }
+}
+
+function hideSource() {
+    let editor = document.getElementById("editor");
+    if (!editor.classList.contains("hidden")) {
+        editor.classList.add("hidden");
+    }
+
+    let showButton = document.getElementById("show-source");
+    if (showButton.classList.contains("hidden")) {
+        showButton.classList.remove("hidden");
+    }
+
+    let hideButton = document.getElementById("hide-source");
+    if (!hideButton.classList.contains("hidden")) {
+        hideButton.classList.add("hidden");
+    }
 }
 
 function dropHandler(evt) {
