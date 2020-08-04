@@ -73,9 +73,14 @@ button:focus {
     outline: 0px transparent !important;
 }
 
+#editor-container {
+    position: sticky;
+    top: 0;
+}
+
 #editor {
     position: absolute;
-    top: 60px;
+    top: 4px;
     right: 4px;
     background: #dfd;
     padding: 0.5em;

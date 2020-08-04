@@ -37,9 +37,10 @@ Licensed under <a href="http://www.apache.org/licenses/LICENSE-2.0">Apache Licen
             <button id="show-source" class="hidden">Source</button>
             <button id="hide-source">Max</button>
         </div>
-        <div id="editor">
-            <h2>Source</h2>
-            <textarea id="source" rows="20" cols="50">
+        <div id="editor-container">
+            <div id="editor">
+                <h2>Source</h2>
+                <textarea id="source" rows="20" cols="60">
 browser -> server: request
 server -> server: process
 participant database
@@ -47,6 +48,7 @@ note over server,database: add DB calls
 server --> browser: response 
 note left of browser: display\nto user
 </textarea>
+            </div>
         </div>
         <div id="diagram"></div>
         <script src="manage-input.js"></script>
